@@ -1,0 +1,60 @@
+/* src/components/Auth/ProfileSetup.css */
+
+.profile-setup-container {
+  max-width: 400px;
+  margin: 80px auto;
+  padding: 2rem;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.profile-setup-container h2 {
+  font-size: 1.8rem;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.profile-setup-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.profile-setup-container input,
+.profile-setup-container select {
+  padding: 12px;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+
+.profile-setup-container input:focus,
+.profile-setup-container select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.2);
+}
+
+.profile-setup-container button {
+  padding: 12px;
+  font-size: 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.profile-setup-container button:hover {
+  background-color: #0056b3;
+}
+
+.profile-setup-container p {
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
+}

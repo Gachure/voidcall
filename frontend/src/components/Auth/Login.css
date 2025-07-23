@@ -1,0 +1,67 @@
+/* src/components/Auth/Login.css */
+
+.login-container {
+  background: #ffffff;
+  color: #222;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  max-width: 400px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+.login-container h2 {
+  margin-bottom: 1rem;
+  font-size: 1.8rem;
+  text-align: center;
+  color: #111;
+}
+
+.login-container form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.login-container input {
+  padding: 0.75rem;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  transition: border 0.2s ease;
+}
+
+.login-container input:focus {
+  border-color: #28a745;
+  outline: none;
+}
+
+.login-container button {
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: none;
+  background-color: #28a745;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.login-container button:hover {
+  background-color: #218838;
+}
+
+.login-container p {
+  text-align: center;
+  cursor: pointer;
+  color: #28a745;
+  font-size: 0.95rem;
+}
+
+.login-container p:hover {
+  text-decoration: underline;
+}

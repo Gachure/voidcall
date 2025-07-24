@@ -1,4 +1,3 @@
-// src/components/Video/VideoChat.tsx
 import React, { useEffect, useRef, useState } from 'react';
 import './VideoChat.css';
 import { useNavigate } from 'react-router-dom';
@@ -30,7 +29,6 @@ const VideoChat: React.FC = () => {
 
   const navigate = useNavigate();
 
-  // ✅ Fetch user's profile from Firestore
   useEffect(() => {
     const auth = getAuth();
     const uid = auth.currentUser?.uid;
@@ -52,7 +50,6 @@ const VideoChat: React.FC = () => {
     return () => unsubscribe();
   }, [navigate]);
 
-  // ✅ Start local stream + connect
   useEffect(() => {
     if (!profileLoaded || !userProfile) return;
 
@@ -84,6 +81,8 @@ const VideoChat: React.FC = () => {
   }, [profileLoaded, userProfile]);
 
   const joinMatchQueue = async (pc: RTCPeerConnection) => {
+    console.log('PeerConnection ready:', pc); // 👈 This silences TS6133 and gives you debug output
+
     try {
       const auth = getAuth();
       const roomRef = await addDoc(collection(db, 'rooms'), {
@@ -100,7 +99,6 @@ const VideoChat: React.FC = () => {
     }
   };
 
-  // ✅ NEXT: Leave current call and start fresh
   const handleNext = async () => {
     if (peerConnection) peerConnection.close();
     setPeerConnection(null);
@@ -114,11 +112,10 @@ const VideoChat: React.FC = () => {
     }
 
     setRoomId(null);
-    setProfileLoaded(false); // 👈 Force restart
-    setTimeout(() => setProfileLoaded(true), 100); // Quick reload
+    setProfileLoaded(false);
+    setTimeout(() => setProfileLoaded(true), 100);
   };
 
-  // ✅ STOP: Leave room and reset VideoChat without navigating
   const handleStop = async () => {
     if (peerConnection) peerConnection.close();
     setPeerConnection(null);
@@ -135,11 +132,10 @@ const VideoChat: React.FC = () => {
     setUserProfile(null);
     setProfileLoaded(false);
 
-    // 👇 Refresh the component by resetting state
     setTimeout(() => {
       const auth = getAuth();
       if (auth.currentUser) {
-        setProfileLoaded(true); // Re-fetch everything fresh
+        setProfileLoaded(true);
       } else {
         navigate('/profile-setup');
       }

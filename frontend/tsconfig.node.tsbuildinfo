@@ -1,0 +1,1 @@
+{"root":["./src/app.tsx","./src/firebase.ts","./src/main.tsx","./src/vite-env.d.ts","./src/components/auth/login.tsx","./src/components/auth/profilesetup.tsx","./src/components/auth/register.tsx","./src/components/video/videochat.tsx","./src/utils/checkprofile.ts","./vite.config.ts"],"version":"5.8.3"}

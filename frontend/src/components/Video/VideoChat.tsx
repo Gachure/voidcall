@@ -61,17 +61,18 @@ const VideoChat: React.FC = () => {
           localVideoRef.current.srcObject = stream;
         }
 
-        const pc = new RTCPeerConnection(servers);
-        stream.getTracks().forEach((track) => pc.addTrack(track, stream));
+        const newPC = new RTCPeerConnection(servers);
+stream.getTracks().forEach((track) => newPC.addTrack(track, stream));
 
-        pc.ontrack = (event) => {
-          if (remoteVideoRef.current) {
-            remoteVideoRef.current.srcObject = event.streams[0];
-          }
-        };
+newPC.ontrack = (event) => {
+  if (remoteVideoRef.current) {
+    remoteVideoRef.current.srcObject = event.streams[0];
+  }
+};
 
-        setPeerConnection(pc);
-        await joinMatchQueue(pc);
+setPeerConnection(newPC);
+await joinMatchQueue(newPC);
+
       } catch (err) {
         console.error('Media error:', err);
       }

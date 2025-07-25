@@ -26,7 +26,8 @@ const ProfileSetup: React.FC = () => {
               `https://nominatim.openstreetmap.org/reverse?format=json&lat=${coords.latitude}&lon=${coords.longitude}`
             );
             const data = await res.json();
-            setCountry(data?.address?.country || '');
+            const autoDetectedCountry = data?.address?.country || '';
+            if (!country) setCountry(autoDetectedCountry); // Only fill if input is empty
           } catch (err) {
             console.error('Country fetch error:', err);
             setError('Could not determine country.');
@@ -71,11 +72,9 @@ const ProfileSetup: React.FC = () => {
     };
 
     try {
-      // ✅ Save profile to Firestore
       await setDoc(doc(db, 'profiles', uid), profile);
       localStorage.setItem('profile', JSON.stringify(profile));
 
-      // 🔄 Confirm it saved before navigating
       const saved = await getDoc(doc(db, 'profiles', uid));
       if (saved.exists()) {
         navigate('/video');
@@ -93,7 +92,6 @@ const ProfileSetup: React.FC = () => {
   return (
     <div className="profile-setup-container">
       <h2>Set Up Your Profile</h2>
-
       {error && <p style={{ color: 'red' }}>{error}</p>}
 
       <form onSubmit={handleSubmit}>
@@ -127,9 +125,10 @@ const ProfileSetup: React.FC = () => {
 
         <input
           type="text"
+          placeholder="Country (auto-detect or enter manually)"
           value={country}
-          placeholder="Country (auto-detected)"
-          readOnly
+          onChange={(e) => setCountry(e.target.value)} // ✅ Editable
+          required
         />
 
         <button type="submit" disabled={loading}>
